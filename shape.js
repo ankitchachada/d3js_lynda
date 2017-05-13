@@ -12,9 +12,55 @@ svg.selectAll("rect")
                   .attr("y",function(d,i) {return 500-(d*15);});
 
 var newX=300;
-svg.selectAll("circle")
+svg.selectAll("circle.first")
        .data(dataArray)
        .enter().append("circle")
-                 .attr("cx",function(d,i) { newX += (d*6)+(i*20) ;return newX;})
+                 .attr("class","first")
+                 .attr("cx",function(d,i) { newX += (d*3)+(i*20) ;return newX;})
                  .attr("cy","100")
                  .attr("r",function(d) {return d*3;})
+
+var newX=600;
+svg.selectAll("circle.second")
+       .data(dataArray)
+       .enter().append("circle")
+                 .attr("class","second")
+                 .attr("cx",function(d,i) { newX += (d*3)+(i*20) ;return newX;})
+                 .attr("cy","100")
+                 .attr("r",function(d) {return d*3;})   
+
+var newX=900;
+svg.selectAll("ellipse")
+       .data(dataArray)
+       .enter().append("ellipse")
+                 .attr("cx",function(d,i) { newX += (d*3)+(i*20) ;return newX;})
+                 .attr("cy","100")
+                 .attr("rx",function(d) {return d*3;})
+                 .attr("ry","30")                
+
+var newX=1200;
+svg.selectAll("line")
+       .data(dataArray)
+       .enter().append("line")
+                 .attr("x1",newX)
+                 // .style("stroke","green")
+                 // .attr("stroke","blue")
+                 .attr("stroke-width","2")
+                 .attr("y1",function(d,i) {return 80+(i*20);})
+                 .attr("x2",function(d) {return newX+(d*15);})
+                 .attr("y2",function(d,i) {return 80+(i*20);})                
+
+var textArray = ['start', 'middle' , 'end'] 
+
+svg.append("text").selectAll("tspan")
+      .data(textArray)
+      .enter().append("tspan")
+       .attr("x",newX)
+       .attr("y",function(d,i) { return 150+(i*30);})
+       .attr("fill","none")
+       .attr("stroke","blue")
+       .attr("stroke-width","2")
+       .attr("dominant-baseline","middle")
+       .attr("text-anchor","start")
+       .attr("font-size",30)
+       .text(function(d) { return d;});
